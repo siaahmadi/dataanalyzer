@@ -1,0 +1,19 @@
+testTrial.getNeurons.thatSatisfy(neuron.firingRate.gt(1));
+
+gt(firingRate(thatSatisfy(testTrial.neurons)), 1)
+
+testTrial.neurons.firingRate.gt(1);
+
+
+
+
+
+
+
+
+testTrial.neurons.thatSatisfy(testTrial.neurons.gt.firingRate(1));
+
+
+neuronarray.thatSatisfy(testTrial.neurons, 'firingRate', 'gt', 1).plot
+neuronarray.thatSatisfy(testTrial.neurons, '
+test

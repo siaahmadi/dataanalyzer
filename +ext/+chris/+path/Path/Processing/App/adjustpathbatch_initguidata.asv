@@ -1,0 +1,21 @@
+function adjustpathbatch_initguidata(batchAdj,sessionsFile,toDef,hFig)
+sessInfo = sessionsFileToStruct(sessionsFile);
+setappdata(hFig,'sessInfo',sessInfo);
+setappdata(hFig,'batchAdj',batchAdj);
+defInds = find(toDef);
+setappdata(hFig,'defInds',defInds);
+nBatch = length(defInds);
+setappdata(hFig,'nBatch',nBatch);
+defined = false(nBatch,1);
+for b =
+setappdata(hFig,'defined',defined);
+iCurrInd = 1;
+setappdata(hFig,'iCurrInd',iCurrInd);
+currInd = defInds(iCurrInd);
+setappdata(hFig,'currInd',currInd);
+batchPaths = cell(nBatch,1);
+setappdata(hFig,'batchPaths',batchPaths);
+pathDirs = cell(nBatch,1);
+setappdata(hFig,'pathDirs',pathDirs);
+batchLabels = cell(nBatch,1);
+setappdata(hFig,'batchLabels',batchLabels);

@@ -1,0 +1,17 @@
+function update(obj)
+
+t = obj.t;
+x = obj.x;
+y = obj.y;
+s = obj.sx;
+sld1 = obj.lkdSliders{1};
+sld2 = obj.lkdSliders{2};
+
+ind1 = closestPoint(t, 1:length(t), t(1)+(t(end)-t(1))*sld1.Value);
+ind2 = closestPoint(t, 1:length(t), t(1)+(t(end)-t(1))*sld2.Value);
+obj.h_path.XData = x(ind1:ind2);
+obj.h_path.YData = y(ind1:ind2);
+
+modification.x = x(spike2ind(Restrict(s, t(ind1), t(ind2)), t));
+modification.y = y(spike2ind(Restrict(s, t(ind1), t(ind2)), t));
+obj.modifypatch(modification);

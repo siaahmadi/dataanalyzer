@@ -1,0 +1,28 @@
+function fcn = makeMazeResizeFcn(hFig)
+fcn = @resizemaze;
+    X_TARGET = (40+5/8)*2.54;
+    Y_TARGET = (5*12)*2.54;
+    function resizemaze(pos)
+        h = getappdata(hFig,'handles');
+        
+        maze = fig8maze(pos(3),pos(4));
+        parts = fields(maze);
+        cla(h.tempAxes);
+        hold(h.tempAxes,'on');
+        for p = 1:length(parts)
+            cellfun(@(u)plot(h.tempAxes,u(:,1)+pos(1),u(:,2)+pos(2)),maze.(parts{p}));
+        end
+        hold(h.tempAxes,'off');
+        set(h.xText,'String',num2str(pos(1)));
+        set(h.yText,'String',num2str(pos(2)));
+        set(h.widthText,'String',num2str(pos(3)));
+        set(h.heightText,'String',num2str(pos(4)));
+        xCenter = pos(1)+pos(3)/2;
+        yCenter = pos(2)+pos(4)/2;
+        xScale = X_TARGET/pos(3);
+        yScale = Y_TARGET/pos(4);
+        adjData = {xCenter,yCenter,xScale,yScale};
+        set(h.adjTable,'Data',adjData);
+        adj.xCenter
+    end
+end

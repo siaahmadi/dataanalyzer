@@ -1,0 +1,19 @@
+function adjustpathbatch_updateadj(hFig)
+iCurrInd = getappdata(hFig,'iCurrInd');
+modified = getappdata(hFig,'modified');
+modified(iCurrInd) = true;
+s
+adj = getappdata(hFig,'adj');
+h = getappdata(hFig,'handles');
+pos = getPosition(h.selectBox);
+tmpAdj = pos2adj(pos);
+adjFields = fields(tmpAdj);
+for af = 1:length(adjFields)
+    adj(iCurrInd).(adjFields{af}) = tmpAdj.(adjFields{af});
+end
+adj(iCurrInd).rotation = getappdata(hFig,'rotation');
+setappdata(hFig,'adj',adj);
+
+adjData = {adj(iCurrInd).xCenter,adj(iCurrInd).yCenter,adj(iCurrInd).xScale,adj(iCurrInd).yScale};
+set(h.adjTable,'Data',adjData);
+set(h.rotText,'String',num2str(-adj(iCurrInd).rotation));

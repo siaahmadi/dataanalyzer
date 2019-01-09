@@ -1,0 +1,17 @@
+function adjustpathbatch_quit(src,~)
+fileModified = getappdata(src,'fileModified');
+if fileModified
+    batchAdj = getappdata(hFig,'batchAdj');
+    [~,fileName] = fileparts(batchAdj.adjFile);
+    qStr = ['Save changes to ' fileName '?'];
+    answer = questdlg(qStr,'Adjust Path');
+    switch answer
+        case 'Yes'
+            adjustpathbatch_saveMenu([],src);
+            close(src)
+        case 'No'
+            close(src)
+        otherwise
+            return;            
+    end
+end

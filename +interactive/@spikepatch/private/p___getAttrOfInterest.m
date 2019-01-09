@@ -1,0 +1,9 @@
+function [x, y, scale, color, shape, transparency] = p___getAttrOfInterest(h)
+x = mean(h.XData);
+y = mean(h.YData);
+x_onePatch = h.XData(:, 1);
+y_onePathc = h.YData(:, 1);
+scale = p___getMaxDist(x_onePatch,y_onePathc);
+color = h.FaceColor;
+shape = p___shapeEngine([],x_onePatch,y_onePathc);
+transparency = h.FaceAlpha;

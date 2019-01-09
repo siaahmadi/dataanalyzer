@@ -1,0 +1,28 @@
+function [xLims yLims] = adjustpath_getdisplims(hFig)
+% rotation = getappdata(hFig,'rotation');
+pathData = getappdata(hFig,'pathData');
+pathLocs = getappdata(hFig,'pathLocs');
+currLoc = getappdata(hFig,'currentLoc');
+iLocPaths = find(pathLocs == currLoc);
+pathData = transposeStructVectors(pathData,'row');
+xLoc = [pathData(iLocPaths).x];
+yLoc = [pathData(iLocPaths).y];
+[~,r] = cart2pol([min(xLoc) max(xLoc) max(xLoc) min(xLoc)],max(yLoc) max(yLoc) min(yLoc)));
+maxDiam = 2*max(r);
+
+% [xLoc yLoc] = rotatePath(xLoc,yLoc,deg2rad(rotation));
+
+w = diff(minmax(xLoc));
+h = diff(minmax(yLoc));
+
+
+len = maxDiam; %*1.01; %+2*pad;
+wPad = (len-w)/2;
+hPad = (len-h)/2;
+
+xMin = min(xLoc)-wPad;
+xMax = max(xLoc)+wPad;
+yMin = min(yLoc)-hPad;
+yMax = max(yLoc)+hPad;
+xLims = [xMin xMax];
+yLims = [yMin yMax];

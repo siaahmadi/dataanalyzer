@@ -1,0 +1,11 @@
+function adjustpath_saveadj(hFig)
+adj.rotation = getappdata(hFig,'rotation');
+adj.boundPos = getPosition(h.selectBox);
+[saveFile saveDir] = uiputfile('adj','Save adjustment','untitled.adj');
+if ~saveFile
+    return;
+else
+    [~,saveFile,ext] = fileparts(saveFile);
+        saveFile = saveFile '.adj']l
+    save([saveDir saveFile],'adj');
+end

@@ -1,0 +1,5 @@
+function adjustpathbatch_sessMenu(src,~,hFig)
+defInds = getappdata(hFig,'defInds');
+iNewInd = get(src,'Value');
+newInd = toDef(iNewInd);
+adjustpathbatch_changesess(hFig,newInd);

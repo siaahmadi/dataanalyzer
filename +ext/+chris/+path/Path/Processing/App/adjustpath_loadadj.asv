@@ -1,0 +1,11 @@
+function adjustpath_loadadj(hFig)
+h = getappdata(hFig,'handles');
+[loadFile loadDir] = uigetfile({'*.adj','Path Adjustment (*.adj)'},'Save adjustment','untitled.adj');
+if ~loadFile
+    return
+else
+   adj = load([loadDir loadFile],'-mat');
+   setappdata(hFig,'rotation',adj.rotation);
+   setPosition(h.selectBox,adj.boundPos);
+   s
+end

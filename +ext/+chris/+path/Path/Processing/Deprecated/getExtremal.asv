@@ -1,0 +1,23 @@
+%estimates the borders of a square by setting the edge to coordinates that were visited
+%less than 20% of the average coordinate, coordinates in cm, resolution 0.5 cm,
+%assumes a maximum box size of 100 cm by 100 cm
+function extremal = getExtremal(x_squares,y_squares,cutoff)
+if nargin<3 || isempty(cutoff)
+   cutoff = 0.05; % reduced from 20% to 10 %, Sept 2010
+end
+range_min = -105;
+range_max = 105;
+range = [range_min:0.5:range_max];
+
+
+x_hist = histc(x_squares(x_squares >= range_min & x_squares <= range_max),range);
+y_hist = histc(y_squares(y_squares >= range_min & y_squares <= range_max),range);
+
+x_index = find (x_hist > cutoff*mean(x_hist));
+y_index = find (y_hist > cutoff*mean(y_hist));
+
+% Put extremal values in an array
+extremal(1) = range(min(x_index));
+extremal(2) = range(max(x_index));
+extremal(3) = range(min(y_index));
+extremal(4) = range(max(y_index));

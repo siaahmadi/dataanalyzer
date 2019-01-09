@@ -1,0 +1,14 @@
+function showData = adjustpath_setshowdata(hFig,toShow)
+pathData = getappdata(hFig,'pathData');
+rotation = getappdata(hFig,'rotation');
+if nargin<2
+    toShow = 1:length(pathData);
+end
+showData.x = [];
+showData.y = [];
+
+for i = toShow
+    showData.x = cat(1,showData.x,[pathData(i).x; nan]);
+    showData.y = cat(1,showData.y,[pathData(i).y; nan]);
+end
+setappdata(hFig,'showData',showData);

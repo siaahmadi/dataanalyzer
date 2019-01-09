@@ -1,0 +1,18 @@
+function adjustpathbatch_saveadjBtn(src,~,hFig)
+iCurrInd = getappdata(hFig,'iCurrInd');
+saved = getappdata(hFig,'saved');
+modified = getappdata(hFig,'modified');
+defined = getappdata(hFig,'defined');
+
+modified(iCurrInd) = false;
+saved(iCurrInd) = true;
+setappdata(hFig,'modified',modified);
+setappdata(hFig,'saved',saved);
+setappdata(hFig,'defined',defined);
+
+adj = getappdata(hFig,'adj');
+batchAdj = getappdata(hFig,'batchAdj');
+adjFields = fields(adj);
+for af = 1:length(adjFields)
+   batchAdj.(adjFields{af})(sessInd 
+end

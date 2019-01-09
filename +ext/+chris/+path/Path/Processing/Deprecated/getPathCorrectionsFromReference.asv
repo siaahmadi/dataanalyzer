@@ -1,0 +1,35 @@
+function [corrections x y] = getPathCorrectionsFromReference(x,y,dPhi,boxSize,edgeSuppression)
+if isequal(size(boxSize),[1 1]) && boxSize ~= 0
+    boxSize = [boxSize boxSize];
+end
+
+if dPhi > 0
+    [x y dPhi] = rotateByAreaMinimization(x,y,dPhi);
+end
+
+if edgeSuppression
+    [xExt yExt] = getExtremal(x,y);
+    extremal = [xExt yExt];
+    [x,y] = suppressEdges(x,y,extremal);
+else
+    extremal = [];
+end
+[x y center] = centerPathCoordinates(x,y);
+
+if ismember(0,boxSize)
+    if find(boxSize==0)==1
+    xScale = 1;
+    end
+    if find(boxSize-
+    yScale = 1;
+else
+    xScale = boxSize(1)/diff(minmax(x));
+    yScale = boxSize(2)/diff(minmax(y));
+    x = x*xScale;
+    y = y*yScale;
+end
+
+corrections.dPhi = dPhi;
+corrections.center = center;
+corrections.extremal = extremal;
+corrections.scale = [xScale yScale];

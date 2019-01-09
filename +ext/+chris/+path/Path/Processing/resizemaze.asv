@@ -1,0 +1,9 @@
+function resizemaze(pos)
+maze = fig8maze(pos(3),pos(4));
+parts = fields(maze);
+hold on;
+for p = 1:length(parts)
+    plot(maze.(parts(p
+%     cellfun(@(u)plot(u(:,1)+pos(1),u(:,2)+pos(2)),maze.(parts{p}));
+end
+hold off;
